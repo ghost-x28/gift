@@ -1,0 +1,123 @@
+/* Reset básico y fondo general */
+body {
+    background-color: #f4e7f7; /* Un gris muy suave de Bootstrap, pero podemos cambiarlo */
+    overflow-x: hidden; /* Evitamos scroll horizontal por las animaciones */
+}
+
+/* --- CLASES PERSONALIZADAS --- */
+
+/* --- ESTILOS DE LA CARTA --- */
+
+.carta-container {
+    max-width: 480px;
+    background-color: #fffdf5; /* Color crema suave (papel) */
+    transform: rotate(-1deg); /* Ligera inclinación natural */
+    /* Sombra más difusa para que parezca flotar un poco */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08); 
+}
+
+/* Título romántico */
+.titulo-carta {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem; /* Grande y legible */
+    color: #8e44ad; /* Morado a juego con los tulipanes */
+}
+
+/* Cuerpo del mensaje (parece escrito a mano) */
+.cuerpo-carta {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.4rem; /* Tamaño cómodo para móvil */
+    color: #4a4a4a; /* Gris oscuro suave, no negro puro */
+    line-height: 1.4;
+    min-height: 100px; /* Evita saltos bruscos mientras escribe */
+}
+
+/* Efecto decorativo de cinta adhesiva arriba de la carta */
+.washi-tape {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 35px;
+    background-color: rgba(211, 173, 91, 0.7); /* Morado traslúcido */
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Rotación para que parezca pegado a mano */
+    transform: translateX(-50%) rotate(-2deg); 
+}
+
+/* --- ESTILOS DE POLAROID --- */
+
+.polaroid-frame {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+    background-color: white;
+    cursor: pointer;
+    /* Sombra suave para dar profundidad 3D */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Clase para reducir el tamaño (antes era 350px) */
+.polaroid-small {
+    max-width: 240px; /* Tamaño más compacto para que entren dos */
+    margin-bottom: 1.1rem;
+}
+
+/* Rotación Izquierda */
+.rotate-left {
+    transform: rotate(-6deg);
+}
+
+/* Rotación Derecha */
+.rotate-right {
+    transform: rotate(5deg);
+}
+
+/* Efecto Hover: Se endereza, crece y se pone encima de todo */
+.polaroid-frame:hover {
+    transform: scale(1.1) rotate(0deg) !important; /* El !important asegura que sobrescriba la rotación */
+    z-index: 50; /* Trae la foto al frente */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- SECCIÓN DEL JARDÍN --- */
+
+#jardin-container {
+    height: 24vh; /* Ocupa el 30% inferior de la pantalla */
+    background: linear-gradient(to top, #75db84 0%, transparent 100%);
+    /* background: linear-gradient(to top, #e0f7fa 0%, transparent 100%); /* Degradado sutil */
+    overflow: hidden; /* Importante: los tulipanes que nazcan no deben generar scroll */
+}
+
+/* Wrapper para el tulipán (usaremos esto para posicionar el SVG) */
+.tulipan-wrapper {
+    width: 60px;  /* Tamaño base del tulipán */
+    height: auto;
+    transform-origin: bottom center; /* Crecerá desde abajo */
+}
+
+.tulipan {
+    position: absolute;
+    /* bottom: se definirá dinámicamente en JS para cada fila */
+    width: 70px; /* Un poco más anchos */
+    
+    /* TRUCO DE INGENIERO: Centrar el elemento en su coordenada X */
+    transform: translateX(-50%); 
+    transform-origin: bottom center;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+    pointer-events: none; /* Para que no interfieran con clicks si hubiera algo detrás */
+}
+
+.tulipan.crecer {
+    opacity: 1;
+    /* Ajustamos la animación para mantener el translateX(-50%) */
+    animation: sway 3s infinite ease-in-out alternate;
+}
+
+@keyframes sway {
+    /* Mantenemos el translateX(-50%) y añadimos la rotación */
+    0% { transform: translateX(-50%) rotate(-3deg); }
+    100% { transform: translateX(-50%) rotate(3deg); }
+}
