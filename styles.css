@@ -84,7 +84,7 @@ body {
 
 #jardin-container {
     height: 24vh; /* Ocupa el 30% inferior de la pantalla */
-    background: linear-gradient(to top, #75db84 0%, transparent 100%);
+    background: linear-gradient(to top, #95d5a4 0%, transparent 100%);
     /* background: linear-gradient(to top, #e0f7fa 0%, transparent 100%); /* Degradado sutil */
     overflow: hidden; /* Importante: los tulipanes que nazcan no deben generar scroll */
 }
